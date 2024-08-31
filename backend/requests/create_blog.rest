@@ -1,0 +1,22 @@
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+      "title": "xxxxx",
+    "author": "444444",
+    "url": "http://localhost:3003/api/blogs",
+    "likes": 2,
+    "userId":"665cfd6630031b6d849bccba"
+}
+###
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFhYWFhIiwiaWQiOiI2NjVkZTRjYWMzZTg4OWM0ZWU2OWIzMzYiLCJpYXQiOjE3MTc0Mjk1MzF9.I4s_dmtCH143_7kZ105q1IB-0LswSHcHD20Vf37xmFk
+
+{
+      "title": "aaaa",
+    "author": "444efe444",
+    "url": "http://localhost:3003/api/blogs",
+    "likes": 2
+}
+
