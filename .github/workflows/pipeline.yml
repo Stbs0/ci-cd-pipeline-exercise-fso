@@ -21,9 +21,10 @@ jobs:
 
       - name: Install dependencies
         run: cd backend && npm install
+      - name: start
         env:
           MONGO_URI: ${{ secrets.MONGO_URI }}
-      - name: start
+          TEST_MONGO_URI: ${{ secrets.TEST_MONGO_URI }}
         run: cd backend && npm run start
       # - name: Playwright test
       #   run: npm run test:e2e
