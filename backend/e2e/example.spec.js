@@ -10,7 +10,7 @@ describe("Blog app", () => {
         password: "stbs",
       },
     });
-    await page.goto("http://localhost:5173");
+    await page.goto("http://localhost:3003");
   });
 
   test("Login form is shown", async ({ page }) => {
