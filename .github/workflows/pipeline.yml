@@ -27,7 +27,7 @@ jobs:
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
           TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
-        run: cd backend && npm run start
+        run: cd backend && npm run start-ci
       # - name: Playwright test
       #   run: npm run test:e2e
   tag_release:
