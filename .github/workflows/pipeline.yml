@@ -24,11 +24,12 @@ jobs:
     
       - name: Install Playwright browsers
         run: npx playwright install
-        
+
       - name: start
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
           TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
+          PORT: ${{ secrets.PORT }}
         run: cd backend && npm run start-ci
       # - name: Playwright test
       #   run: npm run test:e2e
