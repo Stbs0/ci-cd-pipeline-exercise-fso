@@ -21,6 +21,9 @@ jobs:
 
       - name: Install dependencies
         run: cd backend && npm install
+      - name: Check MONGODB_URI
+        run: echo "MONGODB_URI=${{ secrets.MONGODB_URI }}"
+
       - name: start
         env:
           MONGO_URI: ${{ secrets.MONGODB_URI }}
