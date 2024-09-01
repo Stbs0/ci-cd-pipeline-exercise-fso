@@ -21,13 +21,12 @@ jobs:
 
       - name: Install dependencies
         run: cd backend && npm install
-      - name: Check MONGODB_URI
-        run: echo "MONGODB_URI=${{ secrets.MONGODB_URI }}"
+    
 
       - name: start
         env:
-          MONGO_URI: ${{ secrets.MONGODB_URI }}
-          TEST_MONGO_URI: ${{ secrets.TEST_MONGODB_URI }}
+          MONGDB_URI: ${{ secrets.MONGODB_URI }}
+          TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
         run: cd backend && npm run start
       # - name: Playwright test
       #   run: npm run test:e2e
