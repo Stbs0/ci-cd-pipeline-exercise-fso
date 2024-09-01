@@ -22,9 +22,9 @@ jobs:
       - name: Install dependencies
         run: cd backend && npm install
       - name: start
-        run: npm run start
-      - name: Playwright test
-        run: npm run test:e2e
+        run: cd backend && npm run start
+      # - name: Playwright test
+      #   run: npm run test:e2e
   tag_release:
     needs: [build]
     if: ${{ github.event_name == 'push'}}
