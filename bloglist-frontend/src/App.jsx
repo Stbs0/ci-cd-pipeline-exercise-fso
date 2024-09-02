@@ -18,6 +18,7 @@ const App = () => {
       setUser(user);
       blogService.setToken(user.token);
     }
+   
   }, []);
   useEffect(() => {
     blogService.getAll().then((blogs) => setBlogs(blogs));

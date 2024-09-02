@@ -1,8 +1,9 @@
 const { test, expect, beforeEach, describe } = require("@playwright/test");
 const { loginWith, showBtn, createBlog, likeBtn } = require("./helper");
+const config = require("../utils/config");
 describe("Blog app", () => {
   beforeEach(async ({ page, request }) => {
-    await request.post("http:localhost:3003/api/testing/reset");
+    await request.post("http://localhost:3003/api/testing/reset");
     await request.post("http://localhost:3003/api/users", {
       data: {
         name: "mohammed ibrahim",
@@ -10,7 +11,8 @@ describe("Blog app", () => {
         password: "stbs",
       },
     });
-    await page.goto("http://localhost:5173");
+
+    await page.goto("http://localhost:3003/");
   });
 
   test("Login form is shown", async ({ page }) => {
@@ -37,7 +39,7 @@ describe("Blog app", () => {
     });
 
     test("a new blog can be created", async ({ page }) => {
-      createBlog(page, "helloxx", "me", "www.x.com");
+      await createBlog(page, "helloxx", "me", "www.x.com");
       await expect(page.getByText("helloxx / me")).toBeVisible();
     });
     describe("when blog exists", () => {

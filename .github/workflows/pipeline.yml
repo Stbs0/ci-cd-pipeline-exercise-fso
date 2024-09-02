@@ -3,6 +3,7 @@ env:
   COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
   SKIP_CONDITION: ${{ !contains(join(github.event.commits.*.message, ' '), '#skip') }}
 on:
+  
   push:
     branches:
       - main
@@ -18,11 +19,22 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-      - name: Install dependencies
-        run: npm ci
-      - name: start
-        run: npm run start
 
+      - name: Install dependencies
+        run: cd backend && npm install
+    
+      - name: Build
+        run: cd ../backend && npm run build:ui
+
+      - name: start
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
+          PORT: ${{ secrets.PORT }}
+          SECRET: ${{ secrets.SECRET }}
+        run: cd backend && npm run start-ci
+      # - name: Playwright test
+      #   run: npm run test:e2e
   tag_release:
     needs: [build]
     if: ${{ github.event_name == 'push'}}
@@ -38,10 +50,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
       # - name: Test Success
-        # uses: sarisia/actions-status-discord@v1
-        # if: success()
-        # with:
-        #   webhook: ${{ secrets.DISCORD_WEBHOOK }}
+      # uses: sarisia/actions-status-discord@v1
+      # if: success()
+      # with:
+      #   webhook: ${{ secrets.DISCORD_WEBHOOK }}
 
   deploy:
     needs: [build]
