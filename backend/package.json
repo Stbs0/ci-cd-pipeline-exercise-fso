@@ -9,7 +9,7 @@
     "start-ci": "node index.js & npm run test:e2e && kill $!",
     "test": "NODE_ENV=test node --test --test-concurrency=1",
     "lint": "eslint .",
-    "build:ui": "rm -rf dist && cd ../frontend && npm run build && cp -r dist ../backend",
+    "build:ui": " cd backend && rm -rf dist && cd ../frontend && npm run build && cp -r dist ../backend",
     "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push",
     "start:test": "NODE_ENV=test node index.js ",
     "test:e2e": "playwright test"
