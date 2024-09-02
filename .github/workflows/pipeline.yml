@@ -3,6 +3,7 @@ env:
   COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
   SKIP_CONDITION: ${{ !contains(join(github.event.commits.*.message, ' '), '#skip') }}
 on:
+  
   push:
     branches:
       - main
@@ -22,8 +23,8 @@ jobs:
       - name: Install dependencies
         run: cd backend && npm install
     
-      - name: Install Playwright browsers
-        run: npx playwright install
+      - name: Build
+        run: npm run build:ui
 
       - name: start
         env:
